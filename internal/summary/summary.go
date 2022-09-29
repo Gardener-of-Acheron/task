@@ -56,7 +56,8 @@ func printTaskSummary(l *logger.Logger, t *taskfile.Task) {
 }
 
 func printTaskName(l *logger.Logger, t *taskfile.Task) {
-	l.Outf(logger.Default, "task: %s", t.Name())
+	l.FOutf(l.Stdout, logger.Default, "task: ")
+	l.FOutf(l.Stdout, logger.Green, "%s\n", t.Name())
 	l.Outf(logger.Default, "")
 }
 
@@ -65,7 +66,7 @@ func hasDescription(t *taskfile.Task) bool {
 }
 
 func printTaskDescription(l *logger.Logger, t *taskfile.Task) {
-	l.Outf(logger.Default, t.Desc)
+	l.Outf(logger.Cyan, t.Desc)
 }
 
 func printNoDescriptionOrSummary(l *logger.Logger) {
@@ -95,7 +96,8 @@ func printTaskCommands(l *logger.Logger, t *taskfile.Task) {
 	for _, c := range t.Cmds {
 		isCommand := c.Cmd != ""
 		if isCommand {
-			l.Outf(logger.Default, " - %s", c.Cmd)
+			l.FOutf(l.Stdout, logger.Default, " - ")
+			l.FOutf(l.Stdout, logger.Yellow, "%s\n", c.Cmd)
 		} else {
 			l.Outf(logger.Default, " - Task: %s", c.Task)
 		}
