@@ -66,7 +66,7 @@ func hasDescription(t *taskfile.Task) bool {
 }
 
 func printTaskDescription(l *logger.Logger, t *taskfile.Task) {
-	l.Outf(logger.Cyan, t.Desc)
+	l.Outf(logger.Default, t.Desc)
 }
 
 func printNoDescriptionOrSummary(l *logger.Logger) {
